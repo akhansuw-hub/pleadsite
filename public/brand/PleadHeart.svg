@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" shape-rendering="crispEdges">
+<title>PleadHeart</title>
+<rect x="6" y="4" width="8" height="4" fill="#E85E68"/>
+<rect x="18" y="4" width="8" height="4" fill="#E85E68"/>
+<rect x="2" y="8" width="4" height="4" fill="#E85E68"/>
+<rect x="6" y="8" width="4" height="4" fill="#F6C1C4"/>
+<rect x="10" y="8" width="20" height="4" fill="#E85E68"/>
+<rect x="2" y="12" width="24" height="4" fill="#E85E68"/>
+<rect x="26" y="12" width="4" height="4" fill="#C8505D"/>
+<rect x="6" y="16" width="16" height="4" fill="#E85E68"/>
+<rect x="22" y="16" width="4" height="4" fill="#C8505D"/>
+<rect x="10" y="20" width="8" height="4" fill="#E85E68"/>
+<rect x="18" y="20" width="4" height="4" fill="#C8505D"/>
+<rect x="14" y="24" width="4" height="4" fill="#C8505D"/>
+</svg>

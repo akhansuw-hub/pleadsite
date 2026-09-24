@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   Plead design tokens (website brief §2, paywall brief §5).
+   Raw values live on :root as --plead-*; Tailwind utilities are generated
+   from @theme below, e.g. bg-burgundy, text-wine, border-gold, bg-cream.
+   ------------------------------------------------------------------ */
+:root {
+  --plead-burgundy: #7c3042; /* Court Burgundy: primary CTAs, active states */
+  --plead-wine: #541f2c; /* Deep Wine: hero headlines, dark accents */
+  --plead-mahogany: #704735; /* Mahogany: courtroom/supporting surfaces */
+  --plead-cocoa: #3b2425; /* Dark Cocoa: body text, icons */
+  --plead-cream: #fff6ed; /* Warm Cream: site background */
+  --plead-paper: #fffdfc; /* Paper White: cards, elevated surfaces */
+  --plead-parchment: #f3e4d6; /* Parchment: legal/case-file accents */
+  --plead-blush: #eaa0a4; /* Romance Blush: hearts (decorative only on cream) */
+  --plead-gold: #ca9858; /* Court Gold: verdicts, badges (decorative only on cream) */
+  --plead-gold-ink: #8a5f22; /* AA-safe gold for small text on cream/paper */
+  --plead-muted: #6b5052; /* AA-safe secondary text on cream/paper */
+  --plead-line: #ead8c8; /* hairlines on cream */
+
+  --header-h: 4rem;
+  color-scheme: light;
+}
+
+@theme {
+  --color-burgundy: #7c3042;
+  --color-wine: #541f2c;
+  --color-mahogany: #704735;
+  --color-cocoa: #3b2425;
+  --color-cream: #fff6ed;
+  --color-paper: #fffdfc;
+  --color-parchment: #f3e4d6;
+  --color-blush: #eaa0a4;
+  --color-gold: #ca9858;
+  --color-gold-ink: #8a5f22;
+  --color-muted: #6b5052;
+  --color-line: #ead8c8;
+
+  --font-sans: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia,
+    "Times New Roman", serif;
+
+  --radius-card: 1.5rem;
+  --shadow-card: 0 1px 2px rgb(59 36 37 / 0.06), 0 12px 32px -12px rgb(84 31 44 / 0.18);
+  --shadow-glow: 0 30px 80px -20px rgb(124 48 66 / 0.45);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--plead-cream);
+  color: var(--plead-cocoa);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Pixel art: crisp, never smoothed. Size with explicit width/height and crop with object-position. */
+.pixelated {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+/* Visible focus for every interactive element. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid var(--plead-burgundy);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}
+.on-dark :where(a, button, input, summary):focus-visible {
+  outline-color: var(--plead-gold);
+}
+
+/* 44px minimum tap target helper. */
+.tap {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  background: var(--plead-wine);
+  color: var(--plead-paper);
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+}
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Decorative serif label used for court moments ("EXHIBIT A", "CASE #024"). */
+.court-label {
+  font-family: var(--font-serif);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Scroll reveal (progressive: content is visible without JS). */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity 600ms ease,
+    transform 600ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Long-form prose (usable by legal/support pages rendering Markdown HTML). */
+.prose-plead {
+  color: var(--plead-cocoa);
+  line-height: 1.7;
+  font-size: 1.0625rem;
+}
+.prose-plead h2 {
+  color: var(--plead-wine);
+  font-size: 1.375rem;
+  font-weight: 700;
+  margin: 2.5rem 0 0.75rem;
+  line-height: 1.3;
+}
+.prose-plead h3 {
+  color: var(--plead-wine);
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 1.75rem 0 0.5rem;
+}
+.prose-plead p,
+.prose-plead ul,
+.prose-plead ol,
+.prose-plead table {
+  margin: 0 0 1rem;
+}
+.prose-plead ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+}
+.prose-plead ol {
+  list-style: decimal;
+  padding-left: 1.25rem;
+}
+.prose-plead li {
+  margin: 0.35rem 0;
+}
+.prose-plead a {
+  color: var(--plead-burgundy);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.prose-plead strong {
+  color: var(--plead-wine);
+}
+.prose-plead table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+.prose-plead th,
+.prose-plead td {
+  text-align: left;
+  border-bottom: 1px solid var(--plead-line);
+  padding: 0.6rem 0.5rem;
+  vertical-align: top;
+}
+.prose-plead th {
+  color: var(--plead-wine);
+}
+/* Unconfirmed legal placeholder, e.g. <mark class="placeholder">[LEGAL ENTITY NAME]</mark> */
+.placeholder {
+  background: #fde8c8;
+  color: #6b3a00;
+  border-radius: 0.25rem;
+  padding: 0 0.25rem;
+  font-weight: 600;
+}
