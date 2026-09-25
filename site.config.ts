@@ -87,7 +87,7 @@ export const siteConfig: SiteConfig = {
   EFFECTIVE_DATE: env(process.env.NEXT_PUBLIC_EFFECTIVE_DATE) ?? "25 September 2026",
   WEBSITE_DOMAIN: env(process.env.NEXT_PUBLIC_WEBSITE_DOMAIN) ?? "plead-drab.vercel.app",
   AI_PROVIDERS: env(process.env.NEXT_PUBLIC_AI_PROVIDERS) ?? "Anthropic (Claude)",
-  SUPABASE_REGION: env(process.env.NEXT_PUBLIC_SUPABASE_REGION) ?? PLACEHOLDERS.SUPABASE_REGION,
+  SUPABASE_REGION: env(process.env.NEXT_PUBLIC_SUPABASE_REGION) ?? "Supabase, hosted on AWS in London, United Kingdom (eu-west-2)",
   ANALYTICS_PROVIDERS:
     env(process.env.NEXT_PUBLIC_ANALYTICS_PROVIDERS) ?? "AppsFlyer (mobile attribution)",
   MINIMUM_AGE: Number(env(process.env.NEXT_PUBLIC_MINIMUM_AGE) ?? 18),
