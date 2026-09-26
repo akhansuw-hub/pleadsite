@@ -28,7 +28,7 @@ This Privacy Policy explains how [LEGAL ENTITY NAME] (“Plead”, “we”, “
 - **Subscription information:** product purchased, entitlement status, renewal/expiry metadata and transaction identifiers supplied by Apple/RevenueCat. We do not receive your full payment-card number from Apple.
 - **Device and technical information:** app version, operating system, device identifiers permitted by the platform, crash/debug data, timestamps and IP-derived information where provided by infrastructure services.
 - **Notification data:** push token, notification preferences and delivery-related metadata.
-- **Attribution/advertising information:** if and when AppsFlyer or similar services are enabled, information permitted by your device settings/consent may be used to understand which campaigns led to installs or usage.
+- **Attribution/advertising information:** the app does not currently use attribution or advertising services and does not track you across other companies’ apps or websites. If we enable such a service, we will update this policy first and use only information permitted by your device settings/consent.
 - **Support communications:** messages and attachments you send to support.
 
 ## 3. How we use information

@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["RU9L6MZV99.app.plead.ios"],
+        "components": [
+          { "/": "/join/*", "comment": "Couple invite links (CONTRACTS-v2 amendment ap)" },
+          { "/": "/case/*", "comment": "Case links" }
+        ]
+      }
+    ]
+  }
+}

@@ -34,13 +34,13 @@ brief's rule rewritten as a commitment; visible placeholder line added.
 
 The website does not currently use advertising or web-attribution technologies. If we enable any, we will describe each provider and its purpose here, ask for consent where required, and update the [Privacy Policy](/privacy/) at the same time.
 
-The Plead iOS app may ask for permission to track through Apple’s App Tracking Transparency prompt. That is an app setting on your iPhone and is separate from your website cookie choices.
+The Plead iOS app does not track you for advertising and does not show Apple’s App Tracking Transparency prompt. If that changes, the prompt will be an app setting on your iPhone, separate from your website cookie choices.
 
 <!--
-COUNSEL NOTE (brief §11): AppsFlyer may be added later; do not list it as active on the website until it is
-actually implemented. Update the Privacy Policy at the same time.
-DEVIATION: the ATT sentence was added from brief §6 ("ATT is an iOS-app permission and should not be described
-as the website cookie-consent mechanism"); the app ships an ATT pre-prompt (amendment g) but no AppsFlyer SDK.
+COUNSEL NOTE (brief §11): an attribution SDK (e.g. AppsFlyer) may be added later; do not list it as active on the
+website until it is actually implemented. Update the Privacy Policy at the same time.
+DEVIATION: the ATT sentence follows brief §6 ("ATT is an iOS-app permission and should not be described as the
+website cookie-consent mechanism"); since CONTRACTS-v2 amendment aq the app has no ATT prompt and no attribution SDK.
 -->
 
 ## 4. Managing choices
