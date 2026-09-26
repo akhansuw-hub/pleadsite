@@ -21,7 +21,7 @@ These support core website functions such as security, consent choices, load bal
 
 The website does not currently load analytics technologies. If we enable analytics, we will describe the specific provider, cookies/identifiers, purpose and retention period here. For visitors in jurisdictions where consent is required, we will not activate non-essential analytics until you have consented.
 
-Analytics providers: [ANALYTICS / ATTRIBUTION PROVIDERS].
+Analytics and attribution providers used by the Plead iOS app (not this website): [ANALYTICS / ATTRIBUTION PROVIDERS].
 
 <!--
 COUNSEL NOTE (brief §11): If analytics are enabled, describe the specific provider, cookies/identifiers,
@@ -34,13 +34,13 @@ brief's rule rewritten as a commitment; visible placeholder line added.
 
 The website does not currently use advertising or web-attribution technologies. If we enable any, we will describe each provider and its purpose here, ask for consent where required, and update the [Privacy Policy](/privacy/) at the same time.
 
-The Plead iOS app does not track you for advertising and does not show Apple’s App Tracking Transparency prompt. If that changes, the prompt will be an app setting on your iPhone, separate from your website cookie choices.
+The Plead iOS app uses AppsFlyer (mobile attribution) to understand which ads and campaigns bring people to the app. During setup, the app asks for permission through Apple’s App Tracking Transparency prompt; the advertising identifier is only shared if you allow it, and you can change your choice at any time in your iPhone’s Settings. That is an app setting on your iPhone and is separate from your website cookie choices. AppsFlyer is not loaded on this website.
 
 <!--
-COUNSEL NOTE (brief §11): an attribution SDK (e.g. AppsFlyer) may be added later; do not list it as active on the
-website until it is actually implemented. Update the Privacy Policy at the same time.
+COUNSEL NOTE (brief §11): AppsFlyer is active in the iOS app only (CONTRACTS-v2 amendment at); the website
+still loads no attribution technology. Keep the Privacy Policy in step.
 DEVIATION: the ATT sentence follows brief §6 ("ATT is an iOS-app permission and should not be described as the
-website cookie-consent mechanism"); since CONTRACTS-v2 amendment aq the app has no ATT prompt and no attribution SDK.
+website cookie-consent mechanism").
 -->
 
 ## 4. Managing choices
