@@ -6,7 +6,7 @@ import { legalMetadata, type TocItem } from "@/lib/legal";
 import { isPlaceholder, mailtoHref, siteConfig } from "@/site.config";
 
 const SUMMARY =
-  "How to delete your Plead account, what is deleted, what your partner keeps, and why your Apple subscription must be cancelled separately.";
+  "How to delete your Plead account, what is deleted, what your partner keeps, and why your App Store or Google Play subscription must be cancelled separately.";
 
 export const metadata: Metadata = legalMetadata({
   title: "Delete your account",
@@ -17,7 +17,7 @@ export const metadata: Metadata = legalMetadata({
 // Facts below follow the built behaviour: CONTRACTS-v2 Amendment 2026-09-24 i and supabase/README.md
 // "Account deletion" (delete_account edge function + the in-app confirm sheet in SettingsView).
 const DELETED: ReactNode[] = [
-  "Your sign-in account: email address, Sign in with Apple link and all sessions",
+  "Your sign-in account: email address, Sign in with Apple or Sign in with Google link and all sessions",
   "Your name and avatar (you appear as “Former partner”)",
   "Evidence files you uploaded, such as photos and screenshots",
   "Your push-notification token, notification settings and time zone",
@@ -89,6 +89,7 @@ export default function DeleteAccountPage() {
   const privacyEmail = siteConfig.PRIVACY_EMAIL;
   const privacyHref = mailtoHref(privacyEmail, "Delete my Plead account");
   const manage = siteConfig.MANAGE_SUBSCRIPTION_URL;
+  const managePlay = siteConfig.PLAY_MANAGE_SUBSCRIPTION_URL;
 
   return (
     <LegalLayout
@@ -96,11 +97,11 @@ export default function DeleteAccountPage() {
       eyebrow="Account & data"
       intro={
         <p>
-          You can delete your Plead account at any time from inside the app. This page explains how, and exactly what
-          happens to your data and to the case history you share with your partner.
+          You can delete your Plead account at any time from inside the app, on iPhone or Android. This page explains
+          how, and exactly what happens to your data and to the case history you share with your partner.
         </p>
       }
-      lastUpdated="2026-09-24"
+      lastUpdated="2026-10-02"
       draft={isPlaceholder(privacyEmail)}
       draftMessage="The privacy contact address on this page has not been confirmed yet and is shown in highlighted [BRACKETS]."
       toc={toc}
@@ -110,14 +111,14 @@ export default function DeleteAccountPage() {
         <Step n={1} id="step-1" title="Before you start">
           <p>
             <strong>Deleting your account is permanent</strong> and can’t be undone. It is also{" "}
-            <strong>separate from your subscription</strong>: deleting your account does not cancel an Apple
-            subscription (see step 5).
+            <strong>separate from your subscription</strong>: deleting your account does not cancel a
+            subscription with Apple or Google Play (see step 5).
           </p>
         </Step>
 
         <Step n={2} id="step-2" title="Delete in the app (recommended)">
           <ol className="!list-decimal">
-            <li>Open Plead and tap the Settings gear at the top of the Home screen.</li>
+            <li>Open Plead (the steps are the same on iPhone and Android) and tap the Settings gear at the top of the Home screen.</li>
             <li>
               Under <strong>Account</strong>, tap <strong>Delete account</strong>.
             </li>
@@ -142,7 +143,7 @@ export default function DeleteAccountPage() {
               <span className="placeholder legal-placeholder">{privacyEmail}</span>
             )}{" "}
             from the email address linked to your Plead account, or include the account identifier you sign in with
-            (for example, your Sign in with Apple email). Use the subject “Delete my Plead account”. We will ask you to
+            (for example, your Sign in with Apple or Sign in with Google email). Use the subject “Delete my Plead account”. We will ask you to
             verify that the account is yours before we delete it, then follow the same process as the in-app option.
           </p>
         </Step>
@@ -172,17 +173,23 @@ export default function DeleteAccountPage() {
 
         <Step n={5} id="step-5" title="Cancel your subscription separately">
           <p>
-            Your subscription belongs to your Apple ID, not your Plead account.{" "}
-            <strong>Deleting your account does not cancel it.</strong> To stop future payments, cancel in Apple’s
-            subscription settings, before or after deleting your account.
+            Your subscription belongs to the store account that bought it (your Apple ID on iPhone, or your Google
+            account on Android), not your Plead account. <strong>Deleting your account does not cancel it.</strong> To
+            stop future payments, cancel in that store’s subscription settings, before or after deleting your account.
           </p>
-          <p>
+          <p className="flex flex-wrap gap-3">
             <a href={manage} target="_blank" rel="noopener noreferrer" className="legal-button !text-cream !no-underline">
               Manage Apple subscription<span className="sr-only"> (opens in a new tab)</span>
+            </a>
+            <a href={managePlay} target="_blank" rel="noopener noreferrer" className="legal-button !text-cream !no-underline">
+              Manage Google Play subscription<span className="sr-only"> (opens in a new tab)</span>
             </a>
           </p>
           <p className="text-[0.9375rem] text-muted">
             On iPhone: Settings → your name → Subscriptions → Plead → Cancel Subscription.
+            <br />
+            On Android: Play Store → your profile picture → Payments &amp; subscriptions → Subscriptions → Plead →
+            Cancel subscription.
           </p>
         </Step>
       </ol>

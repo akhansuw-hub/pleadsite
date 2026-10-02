@@ -3,7 +3,7 @@ title: Terms & Conditions
 slug: terms
 summary: The rules for using Plead, the Plead website and related services, including AI rulings, acceptable use and subscriptions.
 effectiveDateKey: EFFECTIVE_DATE
-lastUpdated: "2026-09-24"
+lastUpdated: "2026-10-02"
 draft: true
 ---
 
@@ -11,7 +11,7 @@ draft: true
 STATUS (brief §9): Working copy only. Replace placeholders and obtain legal review before publishing.
 -->
 
-These Terms & Conditions (“Terms”) govern your use of Plead, the Plead website and related services (the “Services”). By creating an account or using the Services, you agree to these Terms.
+These Terms & Conditions (“Terms”) govern your use of Plead (the app for iPhone and Android), the Plead website and related services (the “Services”). By creating an account or using the Services, you agree to these Terms.
 
 ## 1. Who provides Plead
 
@@ -67,7 +67,7 @@ After a verdict, Plead may offer the winner case-relevant judgement options. The
 
 ## 9. Subscriptions and paid features
 
-Paid features are offered through Apple’s App Store and are subject to the [Subscription Terms](/subscription-terms/). One active subscription may provide access to Plead for both currently linked partners according to the product rules. Billing, renewal, cancellation and refunds are also subject to Apple’s terms and applicable consumer law.
+Paid features are offered through Apple’s App Store on iPhone and through Google Play on Android, and are subject to the [Subscription Terms](/subscription-terms/). One active subscription may provide access to Plead for both currently linked partners according to the product rules. Billing, renewal, cancellation and refunds are also subject to the terms of the store that processed your purchase (Apple’s or Google Play’s) and applicable consumer law.
 
 ## 10. Intellectual property
 

@@ -1,0 +1,13 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "app.plead.android",
+      "sha256_cert_fingerprints": [
+        "86:52:64:0D:0C:B4:88:3C:0D:D6:72:0F:1D:86:BD:F4:09:B0:BA:72:95:12:DD:CB:27:48:85:1A:19:1E:57:50",
+        "4C:EC:FD:52:38:9D:87:A5:D4:F1:89:48:1E:15:8C:C9:AD:C4:C3:39:53:2D:A6:F6:AD:4F:78:CD:B5:A7:89:B3"
+      ]
+    }
+  }
+]

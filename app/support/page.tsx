@@ -20,6 +20,7 @@ interface Section {
 }
 
 const manage = siteConfig.MANAGE_SUBSCRIPTION_URL;
+const managePlay = siteConfig.PLAY_MANAGE_SUBSCRIPTION_URL;
 
 function Ext({ href, children }: { href: string; children: ReactNode }) {
   return (
@@ -53,7 +54,7 @@ const SECTIONS: Section[] = [
       },
       {
         q: "I got a new phone. How do I get back in?",
-        a: "Install Plead and sign in the same way you did before (Sign in with Apple or the same email). Your couple and case history are tied to your account, not your device.",
+        a: "Install Plead and sign in the same way you did before (Sign in with Apple, Sign in with Google or the same email). Your couple and case history are tied to your account, not your device.",
       },
     ],
   },
@@ -106,8 +107,8 @@ const SECTIONS: Section[] = [
         q: "What plans are there?",
         a: (
           <>
-            Plead has weekly, monthly and annual plans, billed by Apple at the price shown in the App Store when you
-            subscribe. Eligible users get a 3-day free trial on the annual plan; the monthly and weekly plans have no
+            Plead has weekly, monthly and annual plans, billed by Apple (iPhone) or Google Play (Android) at the price shown in the store
+            when you subscribe. Eligible users get a 3-day free trial on the annual plan; the monthly and weekly plans have no
             free trial. One subscription covers both linked partners. See the{" "}
             <Link href="/subscription-terms/">Subscription Terms</Link>.
           </>
@@ -117,23 +118,26 @@ const SECTIONS: Section[] = [
         q: "How do I cancel?",
         a: (
           <>
-            Subscriptions are billed and managed by Apple. Go to <Ext href={manage}>Manage subscriptions</Ext>, or on
-            your iPhone open Settings → your name → Subscriptions → Plead. Deleting the app or your Plead account does
-            not cancel the subscription.
+            Subscriptions are billed and managed by the store you subscribed through. On iPhone, go to Apple’s{" "}
+            <Ext href={manage}>Manage subscriptions</Ext>, or open Settings → your name → Subscriptions → Plead. On
+            Android, go to Google Play’s <Ext href={managePlay}>Subscriptions</Ext> page, or open the Play Store → your
+            profile picture → Payments &amp; subscriptions → Subscriptions → Plead. Deleting the app or your Plead
+            account does not cancel the subscription.
           </>
         ),
       },
       {
         q: "I paid but Plead still asks me to subscribe.",
-        a: "Open Plead → Settings → Subscription → Restore purchases while signed in to the App Store with the Apple ID that made the purchase. If your partner paid, make sure you are both still linked.",
+        a: "Open Plead → Settings → Subscription → Restore purchases while signed in to the store account that made the purchase (the Apple ID on iPhone, or the Google account on Android). If your partner paid, make sure you are both still linked.",
       },
       {
         q: "Can I get a refund?",
         a: (
           <>
-            Purchases are processed by Apple, so refunds are requested from Apple at{" "}
-            <Ext href="https://reportaproblem.apple.com">reportaproblem.apple.com</Ext>, subject to Apple’s processes
-            and applicable law.
+            Purchases are processed by Apple or Google Play, so refunds are requested from the store you paid: on
+            iPhone at <Ext href="https://reportaproblem.apple.com">reportaproblem.apple.com</Ext>, on Android through{" "}
+            <Ext href="https://support.google.com/googleplay/answer/2479637">Google Play’s refund process</Ext>,
+            subject to that store’s processes and applicable law.
           </>
         ),
       },
@@ -152,7 +156,7 @@ const SECTIONS: Section[] = [
       },
       {
         q: "How do I turn notifications on or off?",
-        a: "In Plead, open Settings → Notifications. That takes you to Plead’s notification settings on your iPhone.",
+        a: "In Plead, open Settings → Notifications. That takes you to Plead’s notification settings on your iPhone or Android phone.",
       },
     ],
   },
@@ -233,7 +237,7 @@ export default function SupportPage() {
         <h2 id="contact-title" className="text-xl font-bold text-paper">
           Contact support
         </h2>
-        <p className="mt-2 text-cream/90">Email us and include the email or Apple ID you use to sign in to Plead.</p>
+        <p className="mt-2 text-cream/90">Email us and include the email, Apple ID or Google account you use to sign in to Plead.</p>
         <p className="mt-4 break-words text-2xl font-bold">
           {supportHref ? (
             <a href={supportHref} className="text-paper underline underline-offset-4">
@@ -299,6 +303,11 @@ export default function SupportPage() {
         <li>
           <a href={manage} target="_blank" rel="noopener noreferrer" className="legal-button w-full sm:w-auto">
             Manage Apple subscription<span className="sr-only"> (opens in a new tab)</span>
+          </a>
+        </li>
+        <li>
+          <a href={managePlay} target="_blank" rel="noopener noreferrer" className="legal-button w-full sm:w-auto">
+            Manage Google Play subscription<span className="sr-only"> (opens in a new tab)</span>
           </a>
         </li>
         <li>

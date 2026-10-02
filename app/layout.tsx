@@ -44,7 +44,7 @@ function jsonLd() {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: "Plead",
-    operatingSystem: "iOS",
+    operatingSystem: "iOS, Android",
     applicationCategory: "LifestyleApplication",
     description,
     ...(siteConfig.APP_STORE_URL ? { downloadUrl: siteConfig.APP_STORE_URL } : {}),

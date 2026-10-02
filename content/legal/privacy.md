@@ -3,7 +3,7 @@ title: Privacy Policy
 slug: privacy
 summary: How Plead collects, uses, shares and protects personal information across the app, the website and related services.
 effectiveDateKey: EFFECTIVE_DATE
-lastUpdated: "2026-09-24"
+lastUpdated: "2026-10-02"
 draft: true
 ---
 
@@ -12,7 +12,7 @@ STATUS (brief §8): Working copy for implementation. Replace bracketed fields an
 review before publishing. Placeholders are interpolated from web/site.config.ts once real values are set.
 -->
 
-This Privacy Policy explains how [LEGAL ENTITY NAME] (“Plead”, “we”, “us” or “our”) collects, uses, shares and protects personal information when you use the Plead mobile app, our website at [WEBSITE DOMAIN], and related services (together, the “Services”).
+This Privacy Policy explains how [LEGAL ENTITY NAME] (“Plead”, “we”, “us” or “our”) collects, uses, shares and protects personal information when you use the Plead mobile app for iPhone or Android, our website at [WEBSITE DOMAIN], and related services (together, the “Services”).
 
 ## 1. Who we are
 
@@ -20,23 +20,31 @@ This Privacy Policy explains how [LEGAL ENTITY NAME] (“Plead”, “we”, “
 
 ## 2. Information we collect
 
-- **Account information:** display name, sign-in identifiers, account ID, avatar selection, linked-couple ID and account creation details.
+- **Account information:** display name, sign-in identifiers (for example your email address, or your Apple or Google account identifier if you choose Sign in with Apple or Sign in with Google), account ID, avatar selection, linked-couple ID and account creation details.
 - **Partner/couple information:** invite codes, linking status, partner display name and relationship metadata you choose to provide.
 - **Case content:** case titles, allegations/positions, defence statements, requested remedies, counter-claims, trial responses, objections, appeals if enabled, and winner-selected judgements.
 - **Evidence you submit:** screenshots, photos, text excerpts, captions, receipts and, if enabled in future, voice notes. Evidence may contain information about you or other people.
 - **AI-generated content:** juror findings, judge questions, rulings, verdicts, judgement suggestions and safety classifications.
-- **Subscription information:** product purchased, entitlement status, renewal/expiry metadata and transaction identifiers supplied by Apple/RevenueCat. We do not receive your full payment-card number from Apple.
-- **Device and technical information:** app version, operating system, device identifiers permitted by the platform, crash/debug data, timestamps and IP-derived information where provided by infrastructure services.
-- **Notification data:** push token, notification preferences and delivery-related metadata.
-- **Attribution/advertising information:** the iOS app uses AppsFlyer to understand which ads and campaigns lead people to install and use Plead. AppsFlyer receives device and app-usage information such as the app install, app opens, a small number of app events (for example that onboarding was completed or the subscription screen was viewed), your IP address and device identifiers. It receives Apple’s advertising identifier (IDFA) only if you allow tracking when Apple’s App Tracking Transparency prompt asks you; you can change that at any time in your iPhone’s Settings. RevenueCat, which processes our subscriptions, also reports subscription purchases to AppsFlyer so we can see which campaigns lead to subscriptions. Your cases, evidence, messages and verdicts are never shared with AppsFlyer or used for advertising.
+- **Subscription information:** product purchased, entitlement status, renewal/expiry metadata and transaction identifiers supplied by Apple or Google Play (whichever store processed your purchase) and RevenueCat. We do not receive your full payment-card number from Apple or Google.
+- **Device and technical information:** app version, operating system (iOS or Android), device identifiers permitted by the platform (Apple’s on iPhone, Google’s on Android), crash/debug data, timestamps and IP-derived information where provided by infrastructure services.
+- **Notification data:** push token (an Apple push token on iPhone, or a Firebase Cloud Messaging token on Android, stored with your account), notification preferences and delivery-related metadata.
+- **Attribution/advertising information:** the Plead app uses AppsFlyer to understand which ads and campaigns lead people to install and use Plead. AppsFlyer receives device and app-usage information such as the app install, app opens, a small number of app events (for example that onboarding was completed or the subscription screen was viewed), your IP address and device identifiers. On iPhone, it receives Apple’s advertising identifier (IDFA) only if you allow tracking when Apple’s App Tracking Transparency prompt asks you; you can change that at any time in your iPhone’s Settings. Android has no App Tracking Transparency prompt: on Android, AppsFlyer receives Google’s Advertising ID unless you have opted out of ads personalisation or deleted the Advertising ID in your device’s settings, which you can change at any time. RevenueCat, which processes our subscriptions, also reports subscription purchases to AppsFlyer so we can see which campaigns lead to subscriptions. Your cases, evidence, messages and verdicts are never shared with AppsFlyer or used for advertising.
 - **Support communications:** messages and attachments you send to support.
+
+<!--
+DEVIATION (CONTRACTS-v2 amendment bc): Android counterparts added for the Android app (amendment az): Google
+sign-in identifiers, Google Play as the store, Firebase Cloud Messaging push tokens (push_tokens.platform 'fcm'),
+the Google Advertising ID for AppsFlyer on Android with no ATT prompt. No retention, training or encryption
+claims were added. COUNSEL NOTE: AppsFlyer on Android only starts when a dev key is configured in the Android
+build; keep this bullet in step with what the Android release actually ships.
+-->
 
 ## 3. How we use information
 
 - Provide and operate accounts, partner linking, cases, evidence, trial flows, verdicts and judgement selection.
 - Process case records through AI systems to generate juror analysis, judge responses and rulings.
 - Provide subscriptions and the couple's subscription, which gives both linked partners access to Plead.
-- Send transactional notifications such as summonses, turn reminders and verdict alerts.
+- Send transactional notifications such as summonses, turn reminders and verdict alerts (through Apple Push Notification service on iPhone and Firebase Cloud Messaging on Android).
 - Protect the Services, detect abuse, enforce rules and operate safety checks.
 - Diagnose errors, measure performance and improve the product.
 - Measure marketing attribution where enabled and legally permitted.
@@ -70,7 +78,7 @@ placeholder stays obvious on the page.
 ## 6. How we share information
 
 - **Your linked partner:** information submitted to a shared case may be disclosed to the other party as part of the trial/evidence flow.
-- **Service providers:** hosting/database/storage providers ([SUPABASE REGION / PROVIDER DETAILS]), AI providers ([AI PROVIDER(S)]), RevenueCat, Apple, notification infrastructure, analytics/attribution providers if enabled ([ANALYTICS / ATTRIBUTION PROVIDERS]), customer-support tooling and security providers.
+- **Service providers:** hosting/database/storage providers ([SUPABASE REGION / PROVIDER DETAILS]), AI providers ([AI PROVIDER(S)]), RevenueCat (our subscription processor on both iPhone and Android, which receives store receipts and purchase tokens), Apple (App Store purchases and push notifications on iPhone, and Sign in with Apple when you choose it), Google (Google Play purchases, Sign in with Google through Google’s Credential Manager when you choose it, and push notifications on Android through Firebase Cloud Messaging), analytics/attribution providers if enabled ([ANALYTICS / ATTRIBUTION PROVIDERS]), customer-support tooling and security providers.
 - **Legal/safety disclosures:** where required by law or reasonably necessary to protect rights, safety, users or the Services.
 - **Business transfers:** in connection with a merger, acquisition, financing, reorganisation or sale, subject to applicable law.
 
@@ -82,7 +90,7 @@ When you delete your account, we delete or anonymise your data where feasible. S
 
 Shared cases relate to both partners, so they are handled as follows when one partner deletes their account:
 
-- Your sign-in account (email, Apple identity and sessions), display name, avatar, push token and notification details are deleted.
+- Your sign-in account (email, Apple or Google identity and sessions), display name, avatar, push token and notification details are deleted.
 - Evidence files you uploaded (photos, screenshots and any other files) are removed from storage.
 - The shared case history (cases, statements, evidence captions and text, verdicts and judgements) stays available to your former partner, with your profile shown as “Former partner”.
 - Records of safety checks are kept for safety and integrity reasons.

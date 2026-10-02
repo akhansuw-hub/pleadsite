@@ -22,7 +22,7 @@ const faqs: { q: string; a: ReactNode }[] = [
   },
   {
     q: "Can I cancel anytime?",
-    a: "Subscriptions are managed through Apple. Cancellation affects future renewals and access continues according to Apple’s billing rules.",
+    a: "Subscriptions are managed through the App Store on iPhone or Google Play on Android. Cancellation affects future renewals and access continues according to that store’s billing rules.",
   },
   {
     q: "What happens after I win?",
@@ -36,7 +36,7 @@ const faqs: { q: string; a: ReactNode }[] = [
         <Link href="/delete-account/" className="font-semibold text-burgundy underline underline-offset-2">
           Delete Account
         </Link>{" "}
-        page. Deleting your account does not cancel an Apple subscription.
+        page. Deleting your account does not cancel a subscription with Apple or Google Play.
       </>
     ),
   },

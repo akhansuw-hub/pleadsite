@@ -62,6 +62,8 @@ export interface SiteConfig {
   MINIMUM_AGE: number;
   /** Apple's subscription-management page (safe public URL). */
   MANAGE_SUBSCRIPTION_URL: Str;
+  /** Google Play's subscription-management page (safe public URL; CONTRACTS-v2 amendment bc). */
+  PLAY_MANAGE_SUBSCRIPTION_URL: Str;
   /** Auto-show the consent banner on first visit. Off while no non-essential tags ship. */
   CONSENT_PROMPT: boolean;
   nav: NavLink[];
@@ -77,22 +79,23 @@ export const siteConfig: SiteConfig = {
   WEEKLY_PRICE_DISPLAY: env(process.env.NEXT_PUBLIC_WEEKLY_PRICE_DISPLAY) ?? "",
   WEEKLY_PRICE_AMOUNT: env(process.env.NEXT_PUBLIC_WEEKLY_PRICE_AMOUNT) ?? "",
   PRICE_CURRENCY: env(process.env.NEXT_PUBLIC_PRICE_CURRENCY) ?? "GBP",
-  SUPPORT_EMAIL: env(process.env.NEXT_PUBLIC_SUPPORT_EMAIL) ?? "rthedon66@gmail.com",
-  PRIVACY_EMAIL: env(process.env.NEXT_PUBLIC_PRIVACY_EMAIL) ?? "rthedon66@gmail.com",
+  SUPPORT_EMAIL: env(process.env.NEXT_PUBLIC_SUPPORT_EMAIL) ?? "support@visageai.app",
+  PRIVACY_EMAIL: env(process.env.NEXT_PUBLIC_PRIVACY_EMAIL) ?? "support@visageai.app",
   LEGAL_ENTITY_NAME: env(process.env.NEXT_PUBLIC_LEGAL_ENTITY_NAME) ?? "PleadAi",
   LEGAL_ENTITY_ADDRESS:
     env(process.env.NEXT_PUBLIC_LEGAL_ENTITY_ADDRESS) ?? "PleadAi, Suite 314, Railway House, Woking, Surrey, GU21 5AH, United Kingdom",
   GOVERNING_LAW: env(process.env.NEXT_PUBLIC_GOVERNING_LAW) ?? "the laws of England and Wales",
   COURTS: env(process.env.NEXT_PUBLIC_COURTS) ?? "the courts of England and Wales",
   EFFECTIVE_DATE: env(process.env.NEXT_PUBLIC_EFFECTIVE_DATE) ?? "25 September 2026",
-  WEBSITE_DOMAIN: env(process.env.NEXT_PUBLIC_WEBSITE_DOMAIN) ?? "plead-drab.vercel.app",
+  WEBSITE_DOMAIN: env(process.env.NEXT_PUBLIC_WEBSITE_DOMAIN) ?? "www.plead-app.com",
   AI_PROVIDERS: env(process.env.NEXT_PUBLIC_AI_PROVIDERS) ?? "Anthropic (Claude)",
   SUPABASE_REGION: env(process.env.NEXT_PUBLIC_SUPABASE_REGION) ?? "Supabase, hosted on AWS in London, United Kingdom (eu-west-2)",
-  /** The iOS app uses AppsFlyer for install attribution, with Apple's ATT permission (CONTRACTS-v2 amendment at). */
+  /** Both apps use AppsFlyer for install attribution: on iOS with Apple's ATT permission (amendment at), on Android without ATT (amendment az). */
   ANALYTICS_PROVIDERS:
     env(process.env.NEXT_PUBLIC_ANALYTICS_PROVIDERS) ?? "AppsFlyer (mobile attribution)",
   MINIMUM_AGE: Number(env(process.env.NEXT_PUBLIC_MINIMUM_AGE) ?? 18),
   MANAGE_SUBSCRIPTION_URL: "https://apps.apple.com/account/subscriptions",
+  PLAY_MANAGE_SUBSCRIPTION_URL: "https://play.google.com/store/account/subscriptions",
   CONSENT_PROMPT: env(process.env.NEXT_PUBLIC_CONSENT_PROMPT) === "true",
   nav: [
     { label: "How it works", href: "/#how-it-works" },

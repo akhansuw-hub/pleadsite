@@ -69,7 +69,12 @@ export default function Footer() {
           ))}
           <li>
             <a href={siteConfig.MANAGE_SUBSCRIPTION_URL} className={linkCls} rel="noopener">
-              Manage subscription
+              Manage subscription (iPhone)
+            </a>
+          </li>
+          <li>
+            <a href={siteConfig.PLAY_MANAGE_SUBSCRIPTION_URL} className={linkCls} rel="noopener">
+              Manage subscription (Android)
             </a>
           </li>
           <li>
