@@ -29,7 +29,7 @@ export default function Header() {
             : "max-w-[var(--shelf)]"
         }`}
       >
-        <Logo variant="compact" height={36} className="mr-auto pl-1" />
+        <Logo height={60} className="mr-auto -my-1 -ml-1" />
 
         <nav aria-label="Primary" className="hidden md:block">
           <ul className="flex items-center gap-0.5">
