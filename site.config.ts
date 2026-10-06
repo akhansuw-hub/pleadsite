@@ -38,8 +38,10 @@ export interface NavLink {
 
 export interface SiteConfig {
   name: "Plead";
-  /** Live App Store link. null → waitlist CTA everywhere. */
+  /** Live App Store link. null → waitlist CTA everywhere (unless PLAY_STORE_URL is set). */
   APP_STORE_URL: Str | null;
+  /** Live Google Play link. null → no Play badge. */
+  PLAY_STORE_URL: Str | null;
   /** Waitlist form endpoint (POST, form-encoded `email`). null → mailto SUPPORT_EMAIL. */
   WAITLIST_URL: Str | null;
   /** Confirmed annual price for the website. null → "See App Store pricing". */
@@ -73,6 +75,7 @@ export interface SiteConfig {
 export const siteConfig: SiteConfig = {
   name: "Plead",
   APP_STORE_URL: env(process.env.NEXT_PUBLIC_APP_STORE_URL) ?? null,
+  PLAY_STORE_URL: env(process.env.NEXT_PUBLIC_PLAY_STORE_URL) ?? null,
   WAITLIST_URL: env(process.env.NEXT_PUBLIC_WAITLIST_URL) ?? null,
   ANNUAL_PRICE_DISPLAY: env(process.env.NEXT_PUBLIC_ANNUAL_PRICE_DISPLAY) ?? null,
   /** Unused: no prices are shown on the site (user decision 2026-09-24). */
@@ -99,7 +102,8 @@ export const siteConfig: SiteConfig = {
   CONSENT_PROMPT: env(process.env.NEXT_PUBLIC_CONSENT_PROMPT) === "true",
   nav: [
     { label: "How it works", href: "/#how-it-works" },
-    { label: "AI Court", href: "/#ai-court" },
+    { label: "The court", href: "/#ai-court" },
+    { label: "Judgements", href: "/#judgements" },
     { label: "FAQ", href: "/#faq" },
   ],
   footerLinks: [

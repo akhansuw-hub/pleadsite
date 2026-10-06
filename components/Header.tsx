@@ -1,36 +1,43 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useState } from "react";
+import { useEffect, useState } from "react";
 import { siteConfig } from "@/site.config";
 import AppStoreCTA from "./AppStoreCTA";
 import Logo from "./Logo";
-import Container from "./Container";
 
-/** Site header: wordmark left, section anchors, App Store / waitlist CTA right, mobile menu. */
+/**
+ * Floating pill header: brand left, section anchors (desktop), one CTA right.
+ * Shrinks and gains a surface once the page scrolls. No hamburger: the same links live in the footer.
+ */
 export default function Header() {
-  const [open, setOpen] = useState(false);
-  const panelId = useId();
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line/70 bg-cream/90 backdrop-blur-md supports-[backdrop-filter]:bg-cream/80">
-      <Container className="flex h-[var(--header-h)] items-center justify-between gap-4">
-        <Logo height={48} className="-ml-1 shrink-0" />
+    <header className="pointer-events-none sticky top-0 z-40 px-3 pt-3">
+      <div
+        className={`pointer-events-auto mx-auto flex h-14 items-center gap-2 rounded-full pr-2 pl-2 transition-[max-width,background-color,box-shadow] duration-500 ease-[var(--ease-out)] ${
+          scrolled
+            ? "max-w-[980px] bg-paper/85 shadow-[0_16px_40px_-24px_rgb(59_36_37/0.45)] ring-1 ring-line backdrop-blur-md"
+            : "max-w-[var(--shelf)]"
+        }`}
+      >
+        <Logo variant="compact" height={36} className="mr-auto pl-1" />
 
         <nav aria-label="Primary" className="hidden md:block">
-          <ul className="flex items-center gap-1">
+          <ul className="flex items-center gap-0.5">
             {siteConfig.nav.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="tap inline-flex items-center rounded-full px-4 text-[15px] font-medium text-cocoa transition-colors hover:bg-parchment hover:text-wine"
+                  className="tap inline-flex items-center rounded-full px-3.5 text-[15px] font-bold text-cocoa transition-colors hover:bg-wine/8 hover:text-wine"
                 >
                   {item.label}
                 </Link>
@@ -39,47 +46,7 @@ export default function Header() {
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2">
-          <span className="hidden sm:contents">
-            <AppStoreCTA size="compact" />
-          </span>
-          <span className="contents sm:hidden">
-            <AppStoreCTA size="compact" waitlistLabel="Join waitlist" />
-          </span>
-          <button
-            type="button"
-            className="tap inline-flex items-center justify-center rounded-full text-wine hover:bg-parchment md:hidden"
-            aria-expanded={open}
-            aria-controls={panelId}
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
-            <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M4 7h16M4 12h16M4 17h16" />}
-            </svg>
-          </button>
-        </div>
-      </Container>
-
-      <div id={panelId} hidden={!open} className="border-t border-line bg-cream md:hidden">
-        <nav aria-label="Mobile">
-          <Container as="ul" className="flex flex-col py-3">
-            {siteConfig.nav.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  onClick={() => setOpen(false)}
-                  className="tap flex items-center rounded-xl px-3 text-lg font-semibold text-wine hover:bg-parchment"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-            <li className="pt-3 pb-2" onClick={() => setOpen(false)}>
-              <AppStoreCTA className="w-full" />
-            </li>
-          </Container>
-        </nav>
+        <AppStoreCTA size="compact" waitlistLabel="Join the waitlist" />
       </div>
     </header>
   );

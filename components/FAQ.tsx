@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import Container from "./Container";
 import SectionHeading from "./SectionHeading";
 
 const faqs: { q: string; a: ReactNode }[] = [
@@ -33,7 +32,7 @@ const faqs: { q: string; a: ReactNode }[] = [
     a: (
       <>
         Yes. In the app, go to Settings → Account → Delete Account, or follow the steps on our{" "}
-        <Link href="/delete-account/" className="font-semibold text-burgundy underline underline-offset-2">
+        <Link href="/delete-account/" className="font-extrabold text-burgundy underline underline-offset-2">
           Delete Account
         </Link>{" "}
         page. Deleting your account does not cancel a subscription with Apple or Google Play.
@@ -44,37 +43,37 @@ const faqs: { q: string; a: ReactNode }[] = [
 
 export default function FAQ() {
   return (
-    <section id="faq" aria-labelledby="faq-title" className="py-20 sm:py-28">
-      <Container width="narrow">
+    <section id="faq" aria-labelledby="faq-title" className="section pt-0">
+      <div className="wrap grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-16">
         <div className="reveal">
           <SectionHeading id="faq-title" eyebrow="FAQ" title="Questions for the court" />
+          <p className="mt-5 text-[15px] font-semibold text-muted">
+            More questions? Visit{" "}
+            <Link href="/support/" className="font-extrabold text-burgundy underline underline-offset-4">
+              Support
+            </Link>
+            .
+          </p>
         </div>
-        <div className="reveal mt-10 divide-y divide-line overflow-hidden rounded-[var(--radius-card)] bg-paper shadow-[var(--shadow-card)] ring-1 ring-line">
+        <div className="reveal divide-y divide-line overflow-hidden rounded-[var(--radius-card)] bg-paper shadow-[var(--shadow-card)] ring-1 ring-line">
           {faqs.map((f) => (
             <details key={f.q} className="group">
-              <summary className="flex min-h-[60px] cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-left text-[17px] font-semibold text-wine hover:bg-cream sm:px-6 [&::-webkit-details-marker]:hidden">
+              <summary className="flex min-h-[60px] cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-left text-[1.05rem] font-extrabold text-wine hover:bg-cream sm:px-6 [&::-webkit-details-marker]:hidden">
                 {f.q}
                 <span
                   aria-hidden="true"
-                  className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-parchment text-burgundy transition-transform group-open:rotate-45"
+                  className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-cream text-burgundy transition-transform group-open:rotate-45"
                 >
-                  <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
+                  <svg viewBox="0 0 20 20" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round">
                     <path d="M10 4v12M4 10h12" />
                   </svg>
                 </span>
               </summary>
-              <div className="px-5 pb-5 leading-relaxed text-cocoa sm:px-6">{f.a}</div>
+              <div className="px-5 pb-5 text-[15px] leading-relaxed font-semibold text-cocoa sm:px-6">{f.a}</div>
             </details>
           ))}
         </div>
-        <p className="reveal mt-8 text-center text-[15px] text-cocoa">
-          More questions? Visit{" "}
-          <Link href="/support/" className="font-semibold text-burgundy underline underline-offset-2">
-            Support
-          </Link>
-          .
-        </p>
-      </Container>
+      </div>
     </section>
   );
 }

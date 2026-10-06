@@ -1,22 +1,20 @@
-import Container from "./Container";
 import PixelArt from "./PixelArt";
 import SectionHeading from "./SectionHeading";
 
 /**
- * "Plead at a glance": Lock Screen / Home Screen widgets + Live Activities (CONTRACTS-v2 amendments o, r).
+ * "Keep the court close": Lock Screen / Home Screen widgets + Live Activities (CONTRACTS-v2 amendments o, r).
  * The visual is a CSS-only mock built around the existing judge frame; no new images.
  */
 export default function AtAGlance() {
   return (
-    <section id="at-a-glance" aria-labelledby="glance-title" className="bg-parchment/60 py-16 sm:py-20">
-      <Container className="grid items-center gap-10 lg:grid-cols-[1fr_1fr]">
+    <section id="at-a-glance" aria-labelledby="glance-title" className="section pt-0">
+      <div className="wrap grid items-center gap-10 rounded-[var(--radius-card)] bg-parchment/60 px-5 py-10 ring-1 ring-line sm:px-8 lg:grid-cols-[1fr_1fr] lg:px-12 lg:py-14">
         <div className="reveal">
           <SectionHeading
             id="glance-title"
-            align="left"
-            eyebrow="Plead at a glance"
-            title="Keep the court close"
-            intro="Summons, your turn, verdicts and judgement status on your Lock Screen and Home Screen, without another notification."
+            eyebrow="Keep the court close"
+            title="Your turn, on your Lock Screen."
+            intro="Summons, your turn, verdicts and judgement status as widgets and Live Activities, without another notification."
           />
         </div>
 
@@ -35,8 +33,8 @@ export default function AtAGlance() {
             </div>
             <div className="min-w-0 flex-1">
               <p className="court-label text-[10px] text-gold">Plead · Case #024</p>
-              <p className="text-[15px] leading-tight font-extrabold tracking-wide text-paper">YOU’VE BEEN SUMMONED</p>
-              <p className="mt-0.5 text-xs text-cream/75">Enter your plea · 23h left</p>
+              <p className="text-[15px] leading-tight font-black tracking-wide text-paper">YOU’VE BEEN SUMMONED</p>
+              <p className="mt-0.5 text-xs font-semibold text-cream/75">Enter your plea · 23h left</p>
             </div>
           </div>
 
@@ -48,16 +46,16 @@ export default function AtAGlance() {
               <span className="court-label text-[9px] whitespace-nowrap text-gold-ink">Case #031</span>
             </div>
             <div>
-              <p className="text-[11px] font-bold tracking-[0.12em] text-burgundy uppercase">Your turn</p>
-              <p className="mt-0.5 text-sm leading-snug font-bold text-wine">The dishes affair</p>
+              <p className="text-[11px] font-extrabold tracking-[0.12em] text-burgundy uppercase">Your turn</p>
+              <p className="mt-0.5 text-sm leading-snug font-black text-wine">The dishes affair</p>
             </div>
-            <p className="inline-flex items-center gap-1.5 text-[11px] font-medium whitespace-nowrap text-muted">
+            <p className="inline-flex items-center gap-1.5 text-[11px] font-semibold whitespace-nowrap text-muted">
               <span className="h-1.5 w-1.5 rounded-full bg-gold" />
               6h left to respond
             </p>
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

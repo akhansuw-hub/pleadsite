@@ -1,9 +1,18 @@
 import type { Metadata, Viewport } from "next";
+import { Nunito } from "next/font/google";
 import "./globals.css";
 import { siteConfig, siteOrigin } from "@/site.config";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ConsentBanner from "@/components/ConsentBanner";
+
+/** Heavy rounded sans for the whole site (brief §2: friendly geometric/rounded sans, self-hosted by next/font). */
+const nunito = Nunito({
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800", "900"],
+  display: "swap",
+  variable: "--font-nunito",
+});
 
 const title = "Plead — Settle arguments in an AI courtroom for couples";
 const description =
@@ -47,13 +56,17 @@ function jsonLd() {
     operatingSystem: "iOS, Android",
     applicationCategory: "LifestyleApplication",
     description,
-    ...(siteConfig.APP_STORE_URL ? { downloadUrl: siteConfig.APP_STORE_URL } : {}),
+    ...(siteConfig.APP_STORE_URL
+      ? { downloadUrl: siteConfig.APP_STORE_URL }
+      : siteConfig.PLAY_STORE_URL
+        ? { downloadUrl: siteConfig.PLAY_STORE_URL }
+        : {}),
   };
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-GB" className="h-full" suppressHydrationWarning>
+    <html lang="en-GB" className={`h-full ${nunito.variable}`} suppressHydrationWarning>
       <body className="flex min-h-full flex-col">
         {/* Enables scroll-reveal styles only when JS runs; content stays visible without JS. */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />

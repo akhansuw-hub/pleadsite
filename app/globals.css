@@ -10,6 +10,7 @@
   --plead-wine: #541f2c; /* Deep Wine: hero headlines, dark accents */
   --plead-mahogany: #704735; /* Mahogany: courtroom/supporting surfaces */
   --plead-cocoa: #3b2425; /* Dark Cocoa: body text, icons */
+  --plead-ink: #2a1718; /* near-black for store badges / "ink" buttons */
   --plead-cream: #fff6ed; /* Warm Cream: site background */
   --plead-paper: #fffdfc; /* Paper White: cards, elevated surfaces */
   --plead-parchment: #f3e4d6; /* Parchment: legal/case-file accents */
@@ -19,7 +20,12 @@
   --plead-muted: #6b5052; /* AA-safe secondary text on cream/paper */
   --plead-line: #ead8c8; /* hairlines on cream */
 
-  --header-h: 4rem;
+  --header-h: 4.5rem; /* 12px top gap + 56px pill + 4px */
+  --shelf: 1120px; /* marketing content width */
+  --gutter: clamp(16px, 5vw, 40px);
+  --shadow-card: 0 1px 2px rgb(59 36 37 / 0.06), 0 12px 32px -12px rgb(84 31 44 / 0.18);
+  --shadow-float: 0 32px 64px -28px rgb(59 36 37 / 0.5), 0 10px 24px -14px rgb(84 31 44 / 0.25);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   color-scheme: light;
 }
 
@@ -28,6 +34,7 @@
   --color-wine: #541f2c;
   --color-mahogany: #704735;
   --color-cocoa: #3b2425;
+  --color-ink: #2a1718;
   --color-cream: #fff6ed;
   --color-paper: #fffdfc;
   --color-parchment: #f3e4d6;
@@ -37,13 +44,14 @@
   --color-muted: #6b5052;
   --color-line: #ead8c8;
 
-  --font-sans: ui-rounded, "SF Pro Rounded", system-ui, -apple-system, BlinkMacSystemFont,
+  --font-sans: var(--font-nunito), ui-rounded, "SF Pro Rounded", system-ui, -apple-system,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia,
     "Times New Roman", serif;
 
-  --radius-card: 1.5rem;
+  --radius-card: 1.25rem;
   --shadow-card: 0 1px 2px rgb(59 36 37 / 0.06), 0 12px 32px -12px rgb(84 31 44 / 0.18);
+  --shadow-float: 0 32px 64px -28px rgb(59 36 37 / 0.5), 0 10px 24px -14px rgb(84 31 44 / 0.25);
   --shadow-glow: 0 30px 80px -20px rgb(124 48 66 / 0.45);
 }
 
@@ -57,9 +65,189 @@ body {
   background: var(--plead-cream);
   color: var(--plead-cocoa);
   font-family: var(--font-sans);
+  font-weight: 500;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+}
+
+@layer components {
+/* Content shelf: full width minus the gutters, capped at --shelf. */
+.wrap {
+  width: min(100% - 2 * var(--gutter), var(--shelf));
+  margin-inline: auto;
+}
+
+/* Marketing section rhythm. */
+.section {
+  padding-block: clamp(64px, 10vw, 128px);
+}
+
+/* Display type: heavy, tight, balanced. */
+.display {
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.96;
+  text-wrap: balance;
+}
+.lede {
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--plead-muted);
+  text-wrap: pretty;
+}
+
+/* Pill eyebrow ("The AI courtroom for couples"). */
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem 0.4rem 0.6rem;
+  border-radius: 999px;
+  background: var(--plead-paper);
+  box-shadow: var(--shadow-card);
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--plead-burgundy);
+}
+
+/* Ink buttons and store badges. */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0 1.4rem;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 1rem;
+  white-space: nowrap;
+  text-decoration: none;
+  transition:
+    transform 0.25s var(--ease-out),
+    box-shadow 0.25s var(--ease-out),
+    background-color 0.2s;
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn:active {
+  transform: scale(0.97);
+}
+.btn--ink {
+  background: var(--plead-ink);
+  color: #fff;
+  box-shadow: 0 14px 28px -16px rgb(42 23 24 / 0.7);
+}
+.btn--ink:hover {
+  background: #000;
+}
+.btn--primary {
+  background: var(--plead-burgundy);
+  color: var(--plead-paper);
+  box-shadow: 0 14px 28px -16px rgb(124 48 66 / 0.7);
+}
+.btn--primary:hover {
+  background: var(--plead-wine);
+}
+.btn--paper {
+  background: var(--plead-paper);
+  color: var(--plead-wine);
+  box-shadow: 0 14px 28px -16px rgb(0 0 0 / 0.5);
+}
+.btn--paper:hover {
+  background: #fff;
+}
+.btn--compact {
+  min-height: 42px;
+  padding: 0 1.1rem;
+  font-size: 0.95rem;
+}
+
+.store-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  min-height: 52px;
+  padding: 0.5rem 1.35rem 0.5rem 1.05rem;
+  border-radius: 999px;
+  background: var(--plead-ink);
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 14px 28px -16px rgb(42 23 24 / 0.7);
+  transition:
+    transform 0.25s var(--ease-out),
+    box-shadow 0.25s var(--ease-out),
+    background-color 0.2s;
+}
+.store-badge:hover {
+  transform: translateY(-2px);
+  background: #000;
+}
+.store-badge:active {
+  transform: scale(0.97);
+}
+.store-badge--paper {
+  background: var(--plead-paper);
+  color: var(--plead-ink);
+}
+.store-badge--paper:hover {
+  background: #fff;
+}
+.store-badge__text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.05;
+  text-align: left;
+}
+.store-badge__small {
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  opacity: 0.85;
+}
+.store-badge__large {
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+/* Phone device frame around a 1206×2360 app capture (status bar kept, demo footer cropped). */
+.device {
+  position: relative;
+  padding: 3.2%;
+  border-radius: 17% / 8.7%;
+  background: linear-gradient(145deg, #4b2a2f, #1d1112 60%);
+  box-shadow:
+    inset 0 0 0 1.5px rgb(255 255 255 / 0.1),
+    var(--shadow-float);
+}
+.device__screen {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 1206 / 2360;
+  border-radius: 14.5% / 7.4%;
+  background: #1d1112;
+}
+.device__screen > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+/* Dark "court" block (rounded, inset from the page edge like a card). */
+.court-dark {
+  margin-inline: clamp(8px, 1.2vw, 18px);
+  border-radius: clamp(28px, 4vw, 48px);
+  background:
+    radial-gradient(80% 55% at 50% 40%, rgb(124 48 66 / 0.55), rgb(124 48 66 / 0) 70%),
+    linear-gradient(180deg, #541f2c 0%, #3b2425 100%);
+  color: var(--plead-cream);
+}
 }
 
 /* Pixel art: crisp, never smoothed. Size with explicit width/height and crop with object-position. */
@@ -123,6 +311,29 @@ body {
   transform: none;
 }
 
+/* Horizontal chip rows that scroll on narrow screens without a visible bar. */
+.scroll-row {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 2px;
+  margin-inline: calc(-1 * var(--gutter));
+  padding-inline: var(--gutter);
+}
+.scroll-row::-webkit-scrollbar {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .scroll-row {
+    flex-wrap: wrap;
+    overflow: visible;
+    margin-inline: 0;
+    padding-inline: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -150,14 +361,14 @@ body {
 .prose-plead h2 {
   color: var(--plead-wine);
   font-size: 1.375rem;
-  font-weight: 700;
+  font-weight: 800;
   margin: 2.5rem 0 0.75rem;
   line-height: 1.3;
 }
 .prose-plead h3 {
   color: var(--plead-wine);
   font-size: 1.125rem;
-  font-weight: 700;
+  font-weight: 800;
   margin: 1.75rem 0 0.5rem;
 }
 .prose-plead p,

@@ -29,7 +29,7 @@ export default function WaitlistForm({ onDark = false, className = "" }: { onDar
       onSubmit={onSubmit}
       className={`w-full max-w-[460px] ${className}`}
     >
-      <label htmlFor={`${id}-email`} className={`mb-2 block text-sm font-semibold ${onDark ? "text-cream" : "text-wine"}`}>
+      <label htmlFor={`${id}-email`} className={`mb-2 block text-sm font-extrabold ${onDark ? "text-cream" : "text-wine"}`}>
         Get launch news by email
       </label>
       <div className={`flex flex-col gap-2 rounded-[1.75rem] p-1.5 sm:flex-row sm:rounded-full ${onDark ? "bg-paper/10 ring-1 ring-paper/25" : "bg-paper ring-1 ring-line shadow-sm"}`}>
@@ -53,7 +53,7 @@ export default function WaitlistForm({ onDark = false, className = "" }: { onDar
         </button>
       </div>
       <p className={`mt-2 text-[13px] ${onDark ? "text-cream/80" : "text-muted"}`}>
-        Coming soon to iPhone. See our{" "}
+        Coming soon to iPhone and Android. See our{" "}
         <Link href="/privacy/" className="underline underline-offset-2">
           Privacy Policy
         </Link>

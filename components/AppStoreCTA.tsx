@@ -3,7 +3,7 @@ import { siteConfig } from "@/site.config";
 /** Destination of the "Join the waitlist" CTA when the app is not live yet. */
 export const WAITLIST_ANCHOR = "/#waitlist";
 
-export const isAppLive = () => siteConfig.APP_STORE_URL !== null;
+export const isAppLive = () => siteConfig.APP_STORE_URL !== null || siteConfig.PLAY_STORE_URL !== null;
 
 function AppleGlyph({ className = "" }: { className?: string }) {
   return (
@@ -13,19 +13,27 @@ function AppleGlyph({ className = "" }: { className?: string }) {
   );
 }
 
+function PlayGlyph({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="currentColor">
+      <path d="M4.3 2.4A1.4 1.4 0 0 0 3.5 3.7v16.6c0 .55.3 1.03.8 1.27L13.6 12 4.3 2.4Zm10.7 11.1 2.9 2.9-11.3 6.4c-.2.1-.4.2-.6.2L14.9 13.5ZM15 10.5 6 1.3c.2 0 .4.1.6.2l11.3 6.4-2.9 2.6Zm1.4 1.5 3.3-1.9c.9-.5.9-1.7 0-2.2l-3.3-1.8-3 3 3 2.9Z" />
+    </svg>
+  );
+}
+
 export interface AppStoreCTAProps {
-  /** "badge" = full App Store badge / big waitlist button; "compact" = header-sized. */
+  /** "badge" = store badges / big waitlist button; "compact" = header-sized pill. */
   size?: "badge" | "compact";
   /** Set on dark (wine) backgrounds. */
   onDark?: boolean;
   className?: string;
-  /** Override the waitlist label (e.g. "Join the waitlist"). */
+  /** Override the waitlist label (e.g. "Get Plead"). */
   waitlistLabel?: string;
 }
 
 /**
- * The one App Store / waitlist CTA, driven entirely by `siteConfig.APP_STORE_URL`.
- * Live → "Download on the App Store" badge. Not live → "Join the waitlist" → #waitlist form.
+ * The one download / waitlist CTA, driven entirely by `siteConfig.APP_STORE_URL` / `PLAY_STORE_URL`.
+ * Any store link set → store badges (compact: one "Get the app" pill). None → "Join the waitlist" → #waitlist.
  */
 export default function AppStoreCTA({
   size = "badge",
@@ -33,45 +41,47 @@ export default function AppStoreCTA({
   className = "",
   waitlistLabel = "Join the waitlist",
 }: AppStoreCTAProps) {
-  const url = siteConfig.APP_STORE_URL;
+  const apple = siteConfig.APP_STORE_URL;
+  const play = siteConfig.PLAY_STORE_URL;
 
-  if (url) {
-    const colours = onDark ? "bg-paper text-cocoa" : "bg-black text-white";
+  if (apple || play) {
     if (size === "compact") {
+      const href = apple ?? play!;
       return (
-        <a
-          href={url}
-          className={`tap inline-flex items-center gap-2 rounded-full px-4 text-sm font-semibold ${colours} ${className}`}
-        >
-          <AppleGlyph className="h-4 w-4" />
-          Download
-          <span className="sr-only"> Plead on the App Store</span>
+        <a href={href} className={`btn btn--compact ${onDark ? "btn--paper" : "btn--ink"} ${className}`}>
+          Get the app
         </a>
       );
     }
+    const badge = `store-badge ${onDark ? "store-badge--paper" : ""}`;
     return (
-      <a
-        href={url}
-        className={`inline-flex min-h-[56px] items-center gap-3 rounded-2xl px-5 py-2 transition-transform hover:-translate-y-0.5 ${colours} ${className}`}
-      >
-        <AppleGlyph className="h-7 w-7" />
-        <span className="flex flex-col leading-tight">
-          <span className="text-[11px] font-medium">Download on the</span>
-          <span className="text-xl font-semibold tracking-tight">App Store</span>
-        </span>
-      </a>
+      <div className={`flex flex-wrap items-center gap-3 ${className}`}>
+        {apple ? (
+          <a href={apple} className={badge} aria-label="Download Plead on the App Store">
+            <AppleGlyph className="h-7 w-7" />
+            <span className="store-badge__text">
+              <span className="store-badge__small">Download on the</span>
+              <span className="store-badge__large">App Store</span>
+            </span>
+          </a>
+        ) : null}
+        {play ? (
+          <a href={play} className={badge} aria-label="Get Plead on Google Play">
+            <PlayGlyph className="h-6 w-6" />
+            <span className="store-badge__text">
+              <span className="store-badge__small">Get it on</span>
+              <span className="store-badge__large">Google Play</span>
+            </span>
+          </a>
+        ) : null}
+      </div>
     );
   }
 
-  const colours = onDark
-    ? "bg-paper text-wine hover:bg-cream"
-    : "bg-burgundy text-paper hover:bg-wine";
-  const sizing = size === "compact" ? "px-4 text-sm" : "min-h-[52px] px-6 text-base";
+  const tone = onDark ? "btn--paper" : "btn--primary";
+  const sizing = size === "compact" ? "btn--compact" : "min-h-[54px] px-7 text-[1.05rem]";
   return (
-    <a
-      href={WAITLIST_ANCHOR}
-      className={`tap inline-flex items-center justify-center rounded-full font-semibold shadow-sm transition-colors ${sizing} ${colours} ${className}`}
-    >
+    <a href={WAITLIST_ANCHOR} className={`btn ${tone} ${sizing} ${className}`}>
       {waitlistLabel}
     </a>
   );

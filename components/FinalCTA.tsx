@@ -1,38 +1,39 @@
-import { siteConfig } from "@/site.config";
-import AppStoreCTA from "./AppStoreCTA";
-import Container from "./Container";
+import AppStoreCTA, { isAppLive } from "./AppStoreCTA";
 import PixelArt from "./PixelArt";
 import WaitlistForm from "./WaitlistForm";
 
+/** Closer: one big ask, the store badges (or the waitlist form), and the courtroom art. */
 export default function FinalCTA() {
-  const live = siteConfig.APP_STORE_URL !== null;
+  const live = isAppLive();
   return (
-    <section id="waitlist" aria-labelledby="cta-title" className="pb-20 sm:pb-28">
-      <Container>
-        <div className="reveal relative grid overflow-hidden rounded-[2rem] bg-cream shadow-[var(--shadow-glow)] ring-1 ring-line md:grid-cols-[1.2fr_1fr]">
-          <div className="relative z-10 flex flex-col items-start gap-5 p-8 sm:p-12">
-            <p className="court-label text-mahogany">All rise</p>
-            <h2 id="cta-title" className="text-[2.2rem] leading-[1.05] font-extrabold tracking-tight text-wine text-balance sm:text-5xl">
+    <section id="waitlist" aria-labelledby="cta-title" className="section relative overflow-hidden pt-0">
+      <div className="wrap">
+        <div className="reveal relative overflow-hidden rounded-[clamp(28px,4vw,48px)] bg-wine text-cream shadow-[var(--shadow-glow)]">
+          <div className="relative z-10 flex flex-col items-center gap-6 px-6 pt-12 pb-10 text-center sm:px-12 sm:pt-16 lg:pb-14">
+            <p className="court-label text-gold">All rise</p>
+            <h2 id="cta-title" className="display max-w-[12ch] text-[clamp(2.6rem,10vw,5.2rem)] text-paper">
               Take the argument to court.
             </h2>
-            <p className="max-w-[30rem] text-lg leading-relaxed text-cocoa">
+            <p className="lede max-w-[28em] text-[1.05rem] text-cream/80 sm:text-[1.2rem]">
               Plead both sides. Let the AI court decide. One subscription covers both partners.
             </p>
-            {live ? <AppStoreCTA /> : <WaitlistForm />}
+            <div className="on-dark flex w-full flex-col items-center gap-3">
+              {live ? <AppStoreCTA onDark className="justify-center" /> : <WaitlistForm onDark className="text-left" />}
+            </div>
           </div>
-          <div className="relative min-h-[300px] md:min-h-full">
+          <div className="relative -mb-1 mx-auto w-full max-w-[1120px]">
             <PixelArt
-              src="/art/frame5_endcard"
-              width={1170}
-              height={2532}
-              position="50% 72%"
-              alt="Pixel-art couple walking hand in hand down the red carpet of the courtroom aisle."
-              className="absolute inset-0 h-full w-full"
+              src="/art/courtroom-hero"
+              width={941}
+              height={840}
+              position="50% 100%"
+              alt="Pixel-art courtroom: a white-wigged judge sits at the bench between two heart banners, two partners stand at podiums facing each other, and a crowd watches from the gallery under warm lamplight."
+              className="block aspect-[941/420] h-auto w-full sm:aspect-[941/380]"
             />
-            <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-b from-cream via-transparent to-transparent md:bg-gradient-to-r" />
+            <div aria-hidden="true" className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-wine to-transparent" />
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 }

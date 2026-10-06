@@ -22,7 +22,8 @@ Every launch-dependent value lives in `site.config.ts` and can be overridden at 
 
 | Key | Default | Notes |
 |---|---|---|
-| `APP_STORE_URL` | unset | unset → waitlist CTA everywhere |
+| `APP_STORE_URL` | unset | App Store badge; with `PLAY_STORE_URL` also unset → waitlist CTA everywhere |
+| `PLAY_STORE_URL` | unset | Google Play badge |
 | `WAITLIST_URL` | unset | form POST endpoint (`email`); unset → mailto `SUPPORT_EMAIL` |
 | `SUPPORT_EMAIL`, `PRIVACY_EMAIL` | placeholder | |
 | `LEGAL_ENTITY_NAME`, `LEGAL_ENTITY_ADDRESS` | placeholder | |
